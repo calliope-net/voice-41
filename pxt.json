@@ -1,5 +1,6 @@
 {
     "name": "voice-41",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
