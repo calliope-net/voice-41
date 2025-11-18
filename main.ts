@@ -1,6 +1,3 @@
-input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    pins.play_ode()
-})
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     pins.comment(pins.pins_text("Wachzeit (normal 15 Sekunden)"))
     sekunden = 20
@@ -27,8 +24,6 @@ function feste_Kommandos (id: number) {
         basic.showNumber(input.temperature())
     } else if (id == 82) {
         control.reset()
-    } else if (id == 92 || id == 102) {
-        pins.play_ode()
     } else if (id == 116) {
         basic.setLedColor(0xff0000)
     } else {
@@ -39,13 +34,14 @@ let cmd_id = 0
 let sekunden = 0
 pins.addDisplay(pins.pins_DigitalPin(DigitalPin.C16), pins.pins_DigitalPin(DigitalPin.C17))
 pins.clearDisplays()
-let connected = pins.voice_read_cmdid() >= 0
+basic.pause(2000)
+let wachzeit = pins.voice_register(6)
+pins.zeigeZahl(wachzeit)
+let connected = wachzeit >= 0
 if (connected) {
     basic.setLedColor(0x00ff00)
-    pins.zeigeZahl(1)
 } else {
     basic.setLedColor(0xff0000)
-    pins.zeigeZahl(-1)
 }
 basic.forever(function () {
     if (connected) {
