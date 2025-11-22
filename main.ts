@@ -4,6 +4,10 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     basic.showNumber(sekunden)
     pins.voice_waketime(sekunden)
 })
+function Projekt () {
+    pins.comment(pins.pins_text("calliope-net/voice-41"))
+    pins.comment(pins.pins_text("calliope-net/pins"))
+}
 function feste_Kommandos (id: number) {
     if (id == 45) {
         basic.clearScreen()
@@ -35,7 +39,7 @@ let sekunden = 0
 pins.addDisplay(pins.pins_DigitalPin(DigitalPin.C16), pins.pins_DigitalPin(DigitalPin.C17))
 pins.clearDisplays()
 basic.pause(2000)
-let wachzeit = pins.voice_register(6)
+let wachzeit = pins.voice_register(pins.pins_voice_eRegister(pins.voice_eRegister.WAKE_TIME))
 pins.zeigeZahl(wachzeit)
 let connected = wachzeit >= 0
 if (connected) {
